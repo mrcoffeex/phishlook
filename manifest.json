@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "Phishing Site Checker",
+  "version": "1.0",
+  "description": "Automatically checks the URL visited for phishing sites.",
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "default-icon-16.png",
+      "48": "default-icon-48.png",
+      "128": "default-icon-128.png"
+    }
+  },
+  "icons": {
+    "16": "default-icon-16.png",
+    "48": "default-icon-48.png",
+    "128": "default-icon-128.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": [
+    "scripting",
+    "notifications",
+    "tabs"
+  ]
+}
