@@ -5,17 +5,17 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
     const isPhishingSite = await checkPhishingSite(url);
     if (isPhishingSite) {
       chrome.action.setIcon({ tabId, path: 'warning-48.png' });
-      chrome.action.setBadgeText({ tabId, text: 'Phishing' });
+      chrome.action.setBadgeText({ tabId, text: 'warning' });
       chrome.notifications.create({
         type: "basic",
         iconUrl: "warning-48.png",
-        title: "Phishing Site Checker",
-        message: "The website you visited is recognized as Phishing Site you will be redirected.",
+        title: "Phish Defender",
+        message: "The website you visited is recognized as malicious or phishing site you will be redirected.",
       });
-      await chrome.tabs.update(tab.id, { url: "https://example.com/safe-page" });
+      await chrome.tabs.update(tab.id, { url: "http://localhost/pdadmin/alert" });
     } else {
       chrome.action.setIcon({ tabId, path: 'default-icon-48.png' });
-      chrome.action.setBadgeText({ tabId, text: 'clean' });
+      chrome.action.setBadgeText({ tabId, text: 'safe' });
       console.log('clean site');
     }
   }

@@ -1,10 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Site Name Notification</title>
+  <title>Phish Defender</title>
   <script src="popup.js"></script>
 </head>
 <body>
-  <p>Phishing Detection Beta</p>
+  <div style="width: 200px;">
+    <img src="default-icon-48.png" alt="icon ...">
+    <h3>Welcome to Phish Defender</h3>
+    <p>
+      URL: <span id="url-display">Loading ...</span>
+      <br>
+      <br>
+      Report this website link? 
+      <a href="http://localhost/pdadmin/report?urlStr=" id="report-link" target="_blank">
+        <button type="button">Report</button>
+      </a>
+    </p>
+  </div>
 </body>
 </html>
