@@ -13,7 +13,7 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
       chrome.notifications.create({
         type: "basic",
         iconUrl: "warning-48.png",
-        title: "Phish Defender",
+        title: "Phishlook",
         message: "The website you visited is recognized as malicious or phishing site you will be redirected.",
       });
       await chrome.tabs.update(tab.id, { url: "https://www.phishlook.online/alert" });

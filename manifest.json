@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Phish Defender",
+  "name": "Phishlook",
   "version": "1.0",
   "description": "Automatically checks the URL visited for phishing sites.",
   "host_permissions": [
