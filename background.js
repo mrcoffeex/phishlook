@@ -1,9 +1,13 @@
 
 chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
   if (changeInfo.url || changeInfo.status === 'complete') {
+
     const url = changeInfo.url;
+
     const isPhishingSite = await checkPhishingSite(url);
-    if (isPhishingSite) {
+    const isSuspiciousSite = await checkSuspiciousSiteInPHP(url);
+
+    if (isSuspiciousSite || isPhishingSite) {
       chrome.action.setIcon({ tabId, path: 'warning-48.png' });
       chrome.action.setBadgeText({ tabId, text: 'warning' });
       chrome.notifications.create({
@@ -12,7 +16,7 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
         title: "Phish Defender",
         message: "The website you visited is recognized as malicious or phishing site you will be redirected.",
       });
-      await chrome.tabs.update(tab.id, { url: "http://localhost/pdadmin/alert" });
+      await chrome.tabs.update(tab.id, { url: "https://www.phishlook.online/alert" });
     } else {
       chrome.action.setIcon({ tabId, path: 'default-icon-48.png' });
       chrome.action.setBadgeText({ tabId, text: 'safe' });
@@ -54,6 +58,17 @@ async function checkPhishingSite(url) {
     
   } catch (error) {
     console.error('Error checking phishing site:', error);
+    return false;
+  }
+}
+
+async function checkSuspiciousSiteInPHP(url) {
+  try {
+    const response = await fetch(`https://www.phishlook.online/checkUrl.php?url=${encodeURIComponent(url)}`);
+    const data = await response.json();
+    return data.isSuspicious;
+  } catch (error) {
+    console.error('Error checking suspicious site in PHP:', error);
     return false;
   }
 }

@@ -4,6 +4,6 @@ chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
   
     // Display the URL in the popup.html
     document.getElementById('url-display').textContent = currentUrl;
-    document.getElementById('report-link').href = "http://localhost/pdadmin/report?urlStr=" + currentUrl;
+    document.getElementById('report-link').href = "https://www.phishlook.online/report?urlStr=" + currentUrl;
 });
   
