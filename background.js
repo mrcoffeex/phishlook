@@ -16,7 +16,7 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
         title: "Phishlook",
         message: "The website you visited is recognized as malicious or phishing site you will be redirected.",
       });
-      await chrome.tabs.update(tab.id, { url: "https://www.phishlook.online/alert" });
+      await chrome.tabs.update(tab.id, { url: "https://www.phishlook.website/alert" });
     } else {
       chrome.action.setIcon({ tabId, path: 'default-icon-48.png' });
       chrome.action.setBadgeText({ tabId, text: 'safe' });
@@ -64,7 +64,7 @@ async function checkPhishingSite(url) {
 
 async function checkSuspiciousSiteInPHP(url) {
   try {
-    const response = await fetch(`https://www.phishlook.online/checkUrl.php?url=${encodeURIComponent(url)}`);
+    const response = await fetch(`https://www.phishlook.website/checkUrl.php?url=${encodeURIComponent(url)}`);
     const data = await response.json();
     return data.isSuspicious;
   } catch (error) {
